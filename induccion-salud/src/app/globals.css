@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 /* Transiciones suaves para cambio de tema */
 html {
   transition: color-scheme 0.3s;
