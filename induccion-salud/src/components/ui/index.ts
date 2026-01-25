@@ -2,3 +2,8 @@ export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 export { Alert } from './Alert';
 export { ExternalLink } from './ExternalLink';
 export { Button } from './Button';
+export { Accordion } from './Accordion';
+export { VideoEmbed } from './VideoEmbed';
+export { ImageGallery } from './ImageGallery';
+export { Quiz } from './Quiz';
+export { ProgressIndicator } from './ProgressIndicator';
