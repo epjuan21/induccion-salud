@@ -7,3 +7,6 @@ export { VideoEmbed } from './VideoEmbed';
 export { ImageGallery } from './ImageGallery';
 export { Quiz } from './Quiz';
 export { ProgressIndicator } from './ProgressIndicator';
+export { Breadcrumbs } from './Breadcrumbs';
+export { PageNavigation } from './PageNavigation';
+export { ModuleCard } from './ModuleCard';

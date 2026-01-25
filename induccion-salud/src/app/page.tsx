@@ -1,117 +1,166 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  Alert,
-  ExternalLink,
-} from '@/components/ui';
-import { Shield, DollarSign, FileText, Bug, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Shield, DollarSign, FileText, Bug, BookOpen, Users, Award, Clock } from 'lucide-react';
+import { ModuleCard } from '@/components/ui/ModuleCard';
+import { Alert } from '@/components/ui/Alert';
+import { Card, CardContent } from '@/components/ui/Card';
 
 const modules = [
   {
     title: 'Seguridad de la Información',
-    description: 'Aprende sobre el manejo seguro de la información y equipos de cómputo.',
-    icon: Shield,
+    description: 'Aprende sobre el manejo seguro de la información y equipos de cómputo institucionales.',
     href: '/seguridad-informacion',
-    color: 'text-blue-600 dark:text-blue-400',
-    bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+    icon: Shield,
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    iconBgColor: 'bg-blue-100 dark:bg-blue-900/30',
+    subsections: [
+      { title: 'Manejo Correcto de Equipos de Cómputo', href: '/seguridad-informacion/manejo-equipos' },
+    ],
   },
   {
-    title: 'Facturación P&P',
-    description: 'Conoce los procesos de facturación de servicios de promoción y prevención.',
-    icon: DollarSign,
+    title: 'Facturación de Servicios P&P',
+    description: 'Conoce los procesos de facturación de servicios de promoción y prevención en salud.',
     href: '/facturacion-pyp',
-    color: 'text-green-600 dark:text-green-400',
-    bgColor: 'bg-green-100 dark:bg-green-900/30',
+    icon: DollarSign,
+    iconColor: 'text-green-600 dark:text-green-400',
+    iconBgColor: 'bg-green-100 dark:bg-green-900/30',
+    subsections: [
+      { title: 'Planificación Familiar', href: '/facturacion-pyp/planificacion-familiar' },
+      { title: 'Ruta Materno Perinatal', href: '/facturacion-pyp/ruta-materno-perinatal' },
+      { title: 'Ciclos de Vida', href: '/facturacion-pyp/ciclos-vida' },
+      { title: 'Vacunación', href: '/facturacion-pyp/vacunacion' },
+      { title: 'Higiene Oral', href: '/facturacion-pyp/higiene-oral' },
+    ],
   },
   {
-    title: 'Historias Clínicas',
-    description: 'Guías para el correcto diligenciamiento de historias clínicas.',
-    icon: FileText,
+    title: 'Diligenciamiento de Historias Clínicas',
+    description: 'Guías y normativas para el correcto diligenciamiento de historias clínicas.',
     href: '/historias-clinicas',
-    color: 'text-purple-600 dark:text-purple-400',
-    bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+    icon: FileText,
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    iconBgColor: 'bg-purple-100 dark:bg-purple-900/30',
+    subsections: [
+      { title: 'Planificación Familiar', href: '/historias-clinicas/planificacion-familiar' },
+      { title: 'Ruta Materno Perinatal', href: '/historias-clinicas/ruta-materno-perinatal' },
+      { title: 'Ciclos de Vida', href: '/historias-clinicas/ciclos-vida' },
+    ],
   },
   {
     title: 'Vigilancia Epidemiológica',
-    description: 'Conceptos y procedimientos de vigilancia epidemiológica.',
-    icon: Bug,
+    description: 'Conceptos fundamentales y procedimientos de vigilancia epidemiológica.',
     href: '/vigilancia-epidemiologica',
-    color: 'text-orange-600 dark:text-orange-400',
-    bgColor: 'bg-orange-100 dark:bg-orange-900/30',
+    icon: Bug,
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    iconBgColor: 'bg-orange-100 dark:bg-orange-900/30',
+    subsections: [
+      { title: 'Conceptos Generales', href: '/vigilancia-epidemiologica/conceptos-generales' },
+      { title: 'Eventos Clave', href: '/vigilancia-epidemiologica/eventos-clave' },
+    ],
   },
+];
+
+const stats = [
+  { icon: BookOpen, label: 'Módulos', value: '4' },
+  { icon: FileText, label: 'Lecciones', value: '11' },
+  { icon: Clock, label: 'Duración estimada', value: '8 horas' },
+  { icon: Award, label: 'Certificación', value: 'Incluida' },
 ];
 
 export default function HomePage() {
   return (
     <div className="p-6 lg:p-8">
       {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+      <section className="text-center mb-12">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 mb-6">
+          <Users className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
           Bienvenido al Portal de Inducción
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Este portal contiene toda la información necesaria para tu proceso de
-          incorporación como personal de salud.
+          incorporación como personal de salud en nuestra institución.
         </p>
-      </div>
+      </section>
 
-      {/* Alert de bienvenida */}
-      <div className="max-w-3xl mx-auto mb-12">
-        <Alert variant="info" title="¡Comienza tu inducción!">
-          Explora cada módulo en orden para completar tu proceso de inducción.
-          Cada sección incluye material educativo, videos y evaluaciones.
-        </Alert>
-      </div>
-
-      {/* Módulos */}
-      <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-        {modules.map((module) => {
-          const Icon = module.icon;
-          return (
-            <Link key={module.href} href={module.href}>
-              <Card
-                className="h-full hover:shadow-lg transition-shadow cursor-pointer group"
-                variant="bordered"
-              >
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl ${module.bgColor}`}>
-                      <Icon className={`w-6 h-6 ${module.color}`} />
-                    </div>
-                    <div>
-                      <CardTitle className="group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                        {module.title}
-                      </CardTitle>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {module.description}
+      {/* Stats */}
+      <section className="mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <Card key={stat.label} className="text-center">
+                <CardContent className="p-4">
+                  <Icon className="w-6 h-6 mx-auto text-primary-600 dark:text-primary-400 mb-2" />
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {stat.value}
                   </p>
-                  <div className="mt-4 flex items-center text-primary-600 dark:text-primary-400 font-medium">
-                    <span>Comenzar</span>
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </p>
                 </CardContent>
               </Card>
-            </Link>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </section>
 
-      {/* Sección de ayuda */}
-      <div className="mt-12 text-center">
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
-          ¿Necesitas ayuda? Contacta al departamento de capacitación.
-        </p>
-        <ExternalLink href="mailto:capacitacion@institucion.com">
-          capacitacion@institucion.com
-        </ExternalLink>
-      </div>
+      {/* Welcome Alert */}
+      <section className="mb-12 max-w-3xl mx-auto">
+        <Alert variant="info" title="¡Comienza tu proceso de inducción!">
+          Te recomendamos completar los módulos en orden para un mejor aprendizaje.
+          Cada módulo incluye material educativo, recursos adicionales y evaluaciones
+          para verificar tu comprensión.
+        </Alert>
+      </section>
+
+      {/* Modules Grid */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+          Módulos de Capacitación
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {modules.map((module) => (
+            <ModuleCard
+              key={module.href}
+              title={module.title}
+              description={module.description}
+              href={module.href}
+              icon={module.icon}
+              iconColor={module.iconColor}
+              iconBgColor={module.iconBgColor}
+              subsections={module.subsections}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Help Section */}
+      <section className="mt-12 text-center">
+        <Card className="max-w-xl mx-auto">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              ¿Necesitas ayuda?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Si tienes dudas sobre el proceso de inducción o el contenido de los
+              módulos, no dudes en contactar al departamento de capacitación.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="mailto:capacitacion@institucion.com"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors"
+              >
+                Enviar correo
+              </a>
+              <a
+                href="tel:+571234567890"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                Llamar: (1) 234-5678
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 }
