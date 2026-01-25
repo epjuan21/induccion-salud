@@ -105,27 +105,15 @@ export function Sidebar({
 
   const sidebarContent = (
     <div className="h-full flex flex-col">
-      {/* Header del sidebar (solo móvil) */}
-      <div className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-        <span className="font-semibold text-gray-900 dark:text-white">Menú</span>
-        <button
-          onClick={onCloseMobile}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-        >
-          <X className="w-5 h-5" />
-        </button>
-      </div>
+      {/* Header del sidebar - móvil: título y cerrar, desktop: botón colapsar */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+        {/* Móvil: título */}
+        <span className="lg:hidden font-semibold text-gray-900 dark:text-white">Menú</span>
 
-      {/* Navegación */}
-      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-        {navigation.map(item => renderNavItem(item))}
-      </nav>
-
-      {/* Botón colapsar (solo desktop) */}
-      <div className="hidden lg:block p-4 border-t border-gray-200 dark:border-gray-800">
+        {/* Desktop: botón colapsar */}
         <button
           onClick={onToggle}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="hidden lg:flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors w-full"
         >
           {isExpanded ? (
             <>
@@ -136,7 +124,20 @@ export function Sidebar({
             <ChevronRight className="w-4 h-4" />
           )}
         </button>
+
+        {/* Móvil: botón cerrar */}
+        <button
+          onClick={onCloseMobile}
+          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
+
+      {/* Navegación */}
+      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+        {navigation.map(item => renderNavItem(item))}
+      </nav>
     </div>
   );
 
@@ -150,7 +151,7 @@ export function Sidebar({
         className={cn(
           'hidden lg:flex flex-col fixed left-0 top-16 bottom-0',
           'bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800',
-          'z-40'
+          'z-50'
         )}
       >
         {sidebarContent}
