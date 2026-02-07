@@ -10,3 +10,7 @@ export { ProgressIndicator } from './ProgressIndicator';
 export { Breadcrumbs } from './Breadcrumbs';
 export { PageNavigation } from './PageNavigation';
 export { ModuleCard } from './ModuleCard';
+export { CopyButton } from './CopyButton';
+export { Badge } from './Badge';
+export { SectionDivider } from './SectionDivider';
+export { CompactCard } from './CompactCard';
