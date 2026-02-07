@@ -1,7 +1,7 @@
-import { Monitor, Power, Shield, Trash2, Wifi, Mail, HardDrive } from 'lucide-react';
+import { Monitor, Shield, Trash2, Wifi, Lock, Key } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
-import { ContentBlock } from '@/components/content';
-import { Alert, Accordion, Card, CardContent, VideoEmbed, Quiz } from '@/components/ui';
+import { ArticleContainer, SectionBackground } from '@/components/layout';
+import { Alert, Accordion, Quiz, SectionDivider, CompactCard } from '@/components/ui';
 
 const faqItems = [
   {
@@ -15,7 +15,7 @@ const faqItems = [
           <li>Intenta cerrar la aplicación problemática con Ctrl + Alt + Supr</li>
           <li>Si no funciona, intenta cerrar sesión desde el administrador de tareas</li>
           <li>Como último recurso, mantén presionado el botón de encendido por 5 segundos</li>
-          <li>Reporta el incidente al área de soporte técnico</li>
+          <li>Reporta el incidente al área de sistemas</li>
         </ol>
       </div>
     ),
@@ -25,31 +25,32 @@ const faqItems = [
     title: '¿Puedo instalar programas o aplicaciones en el equipo?',
     content: (
       <p>
-        <strong>No.</strong> Solo el personal de TI está autorizado para instalar software.
-        Si necesitas un programa específico para tu trabajo, debes enviar una solicitud
-        formal al departamento de sistemas especificando el software requerido y la
+        <strong>No.</strong> Solo el personal de Sistemas está autorizado para instalar software.
+        Si necesitas un programa específico para tu trabajo, debes realziar la solicitud
+        al área de sistemas especificando el software requerido y la
         justificación de su necesidad.
       </p>
     ),
   },
-  {
-    id: 'faq-3',
-    title: '¿Cómo reporto un problema técnico con mi equipo?',
-    content: (
-      <div>
-        <p className="mb-2">Puedes reportar problemas de las siguientes formas:</p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Sistema de tickets: mesa.ayuda@institucion.com</li>
-          <li>Extensión telefónica: 1234</li>
-          <li>Portal de autoservicio TI (intranet)</li>
-        </ul>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          Incluye siempre el número de inventario del equipo y una descripción
-          detallada del problema.
-        </p>
-      </div>
-    ),
-  },
+  // TODO: Actualizar con datos de contacto reales de soporte técnico
+  // {
+  //   id: 'faq-3',
+  //   title: '¿Cómo reporto un problema técnico con mi equipo?',
+  //   content: (
+  //     <div>
+  //       <p className="mb-2">Puedes reportar problemas de las siguientes formas:</p>
+  //       <ul className="list-disc list-inside space-y-1">
+  //         <li>Sistema de tickets: mesa.ayuda@institucion.com</li>
+  //         <li>Extensión telefónica: 1234</li>
+  //         <li>Portal de autoservicio TI (intranet)</li>
+  //       </ul>
+  //       <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+  //         Incluye siempre el número de inventario del equipo y una descripción
+  //         detallada del problema.
+  //       </p>
+  //     </div>
+  //   ),
+  // },
   {
     id: 'faq-4',
     title: '¿Puedo conectar dispositivos USB personales?',
@@ -58,7 +59,7 @@ const faqItems = [
         <strong>No se recomienda.</strong> Los dispositivos USB pueden contener malware.
         Si necesitas transferir archivos, utiliza los medios autorizados como correo
         institucional, carpetas compartidas en red o servicios en la nube aprobados.
-        Solo se permiten USB institucionales previamente escaneados por TI.
+        Solo se permiten USB institucionales previamente escaneados por el área de sistemas.
       </p>
     ),
   },
@@ -76,7 +77,7 @@ const faqItems = [
           <li>Enlaces que no coinciden con el texto mostrado</li>
         </ul>
         <p className="mt-2">
-          Reenvía el correo sospechoso a seguridad.informatica@institucion.com
+          Reenvía el correo sospechoso a gesis@esesanantonio-betania-antioquia.gov.co
           y elimínalo de tu bandeja.
         </p>
       </div>
@@ -147,47 +148,20 @@ const quizQuestions = [
   },
 ];
 
-const bestPractices = [
-  {
-    icon: Power,
-    title: 'Encendido y Apagado',
-    items: [
-      'Espera que el sistema cargue completamente antes de abrir programas',
-      'Cierra todas las aplicaciones antes de apagar',
-      'Usa siempre la opción "Apagar" del sistema operativo',
-      'No desconectes el equipo directamente del tomacorriente',
-    ],
-  },
-  {
-    icon: Shield,
-    title: 'Seguridad de Acceso',
-    items: [
-      'Bloquea tu sesión cuando te ausentes (Windows + L)',
-      'No compartas tu contraseña con nadie',
-      'Cambia tu contraseña cada 90 días',
-      'Usa contraseñas de al menos 12 caracteres',
-    ],
-  },
-  {
-    icon: Trash2,
-    title: 'Mantenimiento',
-    items: [
-      'Limpia el teclado y pantalla regularmente',
-      'Mantén el área libre de líquidos y alimentos',
-      'No bloquees las ventilaciones del equipo',
-      'Reporta anomalías al soporte técnico',
-    ],
-  },
-  {
-    icon: Wifi,
-    title: 'Conectividad',
-    items: [
-      'Conéctate solo a redes WiFi institucionales',
-      'No uses redes públicas para acceder a sistemas',
-      'Desconecta dispositivos que no estés usando',
-      'Reporta conexiones sospechosas',
-    ],
-  },
+const passwordRequirements = [
+  { requirement: 'Mínimo 12 caracteres', icon: Shield },
+  { requirement: 'Combinación de mayúsculas y minúsculas', icon: Shield },
+  { requirement: 'Al menos un número', icon: Shield },
+  { requirement: 'Al menos un carácter especial (!@#$%&*)', icon: Shield },
+  { requirement: 'No ser una palabra del diccionario', icon: Shield },
+];
+
+const passwordAvoid = [
+  'Tu nombre o el de familiares',
+  'Fechas de cumpleaños o aniversarios',
+  'Números de documento o teléfono',
+  'Palabras comunes como "password" o "123456"',
+  'La misma contraseña en múltiples sistemas',
 ];
 
 export default function ManejoEquiposPage() {
@@ -209,206 +183,386 @@ export default function ManejoEquiposPage() {
         href: '/facturacion-pyp',
       }}
     >
-      {/* Introducción */}
-      <ContentBlock>
-        <h2>Introducción</h2>
-        <p>
-          Los equipos de cómputo son herramientas fundamentales para el desarrollo
-          de nuestras actividades diarias. Su uso adecuado no solo garantiza su buen
-          funcionamiento y prolonga su vida útil, sino que también protege la información
-          institucional y de los pacientes.
-        </p>
-        <p>
-          En esta sección aprenderás las mejores prácticas para el manejo de equipos,
-          desde el encendido correcto hasta la respuesta ante incidentes de seguridad.
-        </p>
-      </ContentBlock>
+      {/* Introducción - Lead Paragraph */}
+      <SectionBackground variant="default" spacing="normal">
+        <ArticleContainer maxWidth="prose">
+          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+            Los equipos de cómputo son herramientas fundamentales para el desarrollo
+            de nuestras actividades diarias. Su uso adecuado no solo garantiza su buen
+            funcionamiento y prolonga su vida útil, sino que también protege la información
+            institucional y de los pacientes.
+          </p>
 
-      {/* Video educativo */}
-      <div className="my-8">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-          Video: Buenas prácticas de seguridad informática
-        </h2>
-        <div className="max-w-3xl">
-          <VideoEmbed
-            url="https://www.youtube.com/watch?v=inWWhr5tnEA"
-            title="Buenas prácticas de seguridad informática"
-          />
-        </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-          * Este video es ilustrativo. Reemplazar con contenido institucional.
-        </p>
-      </div>
+          <Alert variant="warning" title="Responsabilidad del usuario">
+            Los equipos institucionales son monitoreados. Toda actividad queda registrada
+            y puede ser auditada. El uso inadecuado puede resultar en sanciones
+            disciplinarias.
+          </Alert>
+        </ArticleContainer>
+      </SectionBackground>
 
-      {/* Alertas importantes */}
-      <div className="my-8 space-y-4">
-        <Alert variant="danger" title="Prohibido">
-          <ul className="list-disc list-inside space-y-1">
-            <li>Instalar software no autorizado</li>
-            <li>Modificar configuraciones del sistema</li>
-            <li>Conectar dispositivos USB personales sin autorización</li>
-            <li>Acceder a sitios web bloqueados mediante métodos alternativos</li>
-            <li>Compartir credenciales de acceso</li>
-          </ul>
-        </Alert>
+      {/* Prohibiciones - Fondo Gris */}
+      <SectionBackground variant="muted" spacing="large">
+        <ArticleContainer maxWidth="prose">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Prácticas Prohibidas
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            Las siguientes acciones están estrictamente prohibidas y pueden resultar en sanciones disciplinarias.
+          </p>
 
-        <Alert variant="warning" title="Recuerda">
-          Los equipos institucionales son monitoreados. Toda actividad queda registrada
-          y puede ser auditada. El uso inadecuado puede resultar en sanciones
-          disciplinarias.
-        </Alert>
-      </div>
+          <Alert variant="danger" className="p-5">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+              Actividades NO permitidas
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Instalar software no autorizado
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Modificar configuraciones del sistema
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Conectar dispositivos USB personales sin autorización
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Acceder a sitios web bloqueados mediante métodos alternativos
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Compartir credenciales de acceso
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 shrink-0 mt-0.5">✗</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Guardar información personal o no relacionada con el trabajo
+                </span>
+              </li>
+            </ul>
+          </Alert>
+        </ArticleContainer>
+      </SectionBackground>
 
-      {/* Buenas prácticas */}
-      <div className="my-8">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-          Buenas Prácticas
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {bestPractices.map((practice) => {
-            const Icon = practice.icon;
-            return (
-              <Card key={practice.title}>
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                      <Icon className="w-5 h-5 text-primary-600 dark:text-primary-400" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">
-                      {practice.title}
-                    </h3>
-                  </div>
+      {/* Separador Decorativo */}
+      <SectionDivider variant="decorative" icon={Monitor} />
+
+      {/* Buenas Prácticas - Fondo Blanco */}
+      <SectionBackground variant="default" spacing="large">
+        <ArticleContainer maxWidth="prose">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Buenas Prácticas de Uso
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            Sigue estas recomendaciones para garantizar el buen funcionamiento de los equipos y la seguridad de la información.
+          </p>
+
+          <div className="space-y-6">
+            {/* Encendido y Apagado */}
+            <CompactCard variant="default">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-blue-100 dark:bg-blue-900/40 rounded-lg shrink-0">
+                  <Lock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Encendido y Apagado
+                  </h3>
                   <ul className="space-y-2">
-                    {practice.items.map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400"
-                      >
-                        <span className="text-primary-500 mt-1">•</span>
-                        {item}
-                      </li>
-                    ))}
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Espera que el sistema cargue completamente antes de abrir programas
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Cierra todas las aplicaciones antes de apagar
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Usa siempre la opción &quot;Apagar&quot; del sistema operativo
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Desconectar el equipo al terminar la jornada laboral (Corriente y Red)
+                      </span>
+                    </li>
                   </ul>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Contraseñas seguras */}
-      <ContentBlock>
-        <h2>Creación de contraseñas seguras</h2>
-        <p>
-          Una contraseña segura es tu primera línea de defensa. Sigue estas
-          recomendaciones:
-        </p>
-
-        <div className="my-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-          <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">
-            ✓ Una buena contraseña debe tener:
-          </h4>
-          <ul className="text-green-700 dark:text-green-400 space-y-1">
-            <li>• Mínimo 12 caracteres</li>
-            <li>• Combinación de mayúsculas y minúsculas</li>
-            <li>• Al menos un número</li>
-            <li>• Al menos un carácter especial (!@#$%&*)</li>
-            <li>• No ser una palabra del diccionario</li>
-          </ul>
-        </div>
-
-        <div className="my-4 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
-          <h4 className="font-semibold text-red-800 dark:text-red-300 mb-2">
-            ✗ Evita usar:
-          </h4>
-          <ul className="text-red-700 dark:text-red-400 space-y-1">
-            <li>• Tu nombre o el de familiares</li>
-            <li>• Fechas de cumpleaños o aniversarios</li>
-            <li>• Números de documento o teléfono</li>
-            <li>• Palabras comunes como &quot;password&quot; o &quot;123456&quot;</li>
-            <li>• La misma contraseña en múltiples sistemas</li>
-          </ul>
-        </div>
-
-        <Alert variant="tip" title="Consejo">
-          Usa una frase memorable y modifícala. Por ejemplo: &quot;MiGatoTiene4Patas!&quot;
-          es más fácil de recordar y más segura que &quot;Gat0123&quot;.
-        </Alert>
-      </ContentBlock>
-
-      {/* Preguntas frecuentes */}
-      <div className="my-8">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-          Preguntas Frecuentes
-        </h2>
-        <Accordion items={faqItems} />
-      </div>
-
-      {/* Contacto de soporte */}
-      <div className="my-8">
-        <Card className="bg-gray-50 dark:bg-gray-800/50">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                <HardDrive className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  ¿Necesitas soporte técnico?
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  El equipo de TI está disponible para ayudarte con cualquier
-                  problema técnico o consulta sobre el uso de equipos.
-                </p>
-                <div className="space-y-2 text-sm">
-                  <p className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-gray-400" />
-                    <a href="mailto:soporte.ti@institucion.com" className="text-primary-600 dark:text-primary-400 hover:underline">
-                      soporte.ti@institucion.com
-                    </a>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="text-gray-400">📞</span>
-                    <span className="text-gray-600 dark:text-gray-400">Extensión: 1234</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="text-gray-400">🕐</span>
-                    <span className="text-gray-600 dark:text-gray-400">Lunes a Viernes: 7:00 AM - 6:00 PM</span>
-                  </p>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+            </CompactCard>
 
-      {/* Quiz de evaluación */}
-      <div className="my-8">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-          Evaluación del Módulo
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
-          Completa la siguiente evaluación para verificar tu comprensión del tema.
-          Necesitas un 70% para aprobar.
-        </p>
-        <Quiz
-          title="Evaluación: Manejo de Equipos de Cómputo"
-          questions={quizQuestions}
-          passingScore={70}
-        />
-      </div>
+            {/* Seguridad de Acceso */}
+            <CompactCard variant="default">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-green-100 dark:bg-green-900/40 rounded-lg shrink-0">
+                  <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Seguridad de Acceso
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Bloquea tu sesión cuando te ausentes (Windows + L)
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        No compartas tu contraseña con nadie
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Cambia tu contraseña cada 90 días
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Usa contraseñas de al menos 12 caracteres
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </CompactCard>
 
-      {/* Resumen */}
-      <Alert variant="success" title="Resumen del módulo">
-        <p className="mb-2">Has aprendido sobre:</p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Procedimientos correctos de encendido y apagado</li>
-          <li>Prácticas de seguridad y bloqueo de sesión</li>
-          <li>Creación y manejo de contraseñas seguras</li>
-          <li>Identificación de correos de phishing</li>
-          <li>Canales de soporte técnico</li>
-        </ul>
-      </Alert>
+            {/* Mantenimiento */}
+            <CompactCard variant="default">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-purple-100 dark:bg-purple-900/40 rounded-lg shrink-0">
+                  <Trash2 className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Mantenimiento
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Limpia el teclado y pantalla regularmente
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Mantén el área libre de líquidos y alimentos
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        No bloquees las ventilaciones del equipo
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Reporta anomalías al área de sistemas
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </CompactCard>
+
+            {/* Conectividad */}
+            <CompactCard variant="default">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-orange-100 dark:bg-orange-900/40 rounded-lg shrink-0">
+                  <Wifi className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    Conectividad
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Conéctate solo a redes WiFi institucionales
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        No uses redes públicas para acceder a sistemas
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Desconecta dispositivos que no estés usando
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 shrink-0 mt-0.5">•</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Reporta conexiones sospechosas
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </CompactCard>
+          </div>
+        </ArticleContainer>
+      </SectionBackground>
+
+      {/* Separador Decorativo */}
+      <SectionDivider variant="decorative" icon={Key} />
+
+      {/* Contraseñas seguras - Fondo Gris */}
+      <SectionBackground variant="muted" spacing="large">
+        <ArticleContainer maxWidth="prose">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Creación de Contraseñas Seguras
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+            Una contraseña segura es tu primera línea de defensa contra accesos no autorizados.
+            Sigue estas recomendaciones para crear y mantener contraseñas robustas.
+          </p>
+
+          {/* Requisitos de contraseña */}
+          <div className="mb-6 p-5 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-3">
+              ✓ Una buena contraseña debe tener:
+            </h3>
+            <ul className="space-y-2">
+              {passwordRequirements.map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">•</span>
+                  <span className="text-sm text-green-700 dark:text-green-400 leading-relaxed">
+                    {item.requirement}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Qué evitar */}
+          <div className="mb-6 p-5 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+            <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">
+              ✗ Evita usar:
+            </h3>
+            <ul className="space-y-2">
+              {passwordAvoid.map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-red-600 dark:text-red-400 shrink-0 mt-0.5">•</span>
+                  <span className="text-sm text-red-700 dark:text-red-400 leading-relaxed">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Alert variant="tip" title="Consejo para recordar contraseñas">
+            Usa una frase memorable y modifícala. Por ejemplo: &quot;MiGatoTiene4Patas!&quot;
+            es más fácil de recordar y más segura que &quot;Gat0123&quot;. Convierte frases
+            cotidianas en contraseñas fuertes usando mayúsculas, números y símbolos.
+          </Alert>
+        </ArticleContainer>
+      </SectionBackground>
+
+      {/* Preguntas frecuentes - Fondo Blanco */}
+      <SectionBackground variant="default" spacing="large">
+        <ArticleContainer maxWidth="prose">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            Preguntas Frecuentes
+          </h2>
+          <Accordion items={faqItems} />
+        </ArticleContainer>
+      </SectionBackground>
+
+      {/* Quiz de evaluación - Fondo Gris */}
+      <SectionBackground variant="muted" spacing="large">
+        <ArticleContainer maxWidth="prose">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Evaluación del Módulo
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            Completa la siguiente evaluación para verificar tu comprensión del tema.
+            Necesitas un 70% para aprobar.
+          </p>
+          <Quiz
+            title="Evaluación: Manejo de Equipos de Cómputo"
+            questions={quizQuestions}
+            passingScore={70}
+          />
+        </ArticleContainer>
+      </SectionBackground>
+
+      {/* Resumen - Fondo Blanco */}
+      <SectionBackground variant="default" spacing="normal">
+        <ArticleContainer maxWidth="prose">
+          <Alert variant="success" className="p-5">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+              Resumen del módulo
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+              Has aprendido sobre:
+            </p>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">✓</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Procedimientos correctos de encendido y apagado
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">✓</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Prácticas de seguridad y bloqueo de sesión
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">✓</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Creación y manejo de contraseñas seguras
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">✓</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Identificación de correos de phishing
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-600 dark:text-green-400 shrink-0 mt-0.5">✓</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Responsabilidades del usuario y prácticas prohibidas
+                </span>
+              </li>
+            </ul>
+          </Alert>
+        </ArticleContainer>
+      </SectionBackground>
     </SectionTemplate>
   );
 }
