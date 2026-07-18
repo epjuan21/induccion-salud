@@ -91,6 +91,20 @@ export const navigation: NavItem[] = [
       {
         title: 'Eventos Clave',
         href: '/vigilancia-epidemiologica/eventos-clave',
+        children: [
+          {
+            title: 'Dengue',
+            href: '/vigilancia-epidemiologica/eventos-clave/dengue',
+          },
+          {
+            title: 'APTR',
+            href: '/vigilancia-epidemiologica/eventos-clave/aptr',
+          },
+        ],
+      },
+      {
+        title: 'Fichas',
+        href: '/vigilancia-epidemiologica/fichas',
       },
     ],
   },

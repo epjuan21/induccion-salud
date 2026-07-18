@@ -132,35 +132,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Help Section */}
-      <section className="mt-12 text-center">
-        <Card className="max-w-xl mx-auto">
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              ¿Necesitas ayuda?
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Si tienes dudas sobre el proceso de inducción o el contenido de los
-              módulos, no dudes en contactar al departamento de capacitación.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="mailto:capacitacion@institucion.com"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors"
-              >
-                Enviar correo
-              </a>
-              <a
-                href="tel:+571234567890"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                Llamar: (1) 234-5678
-              </a>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
     </div>
   );
 }
