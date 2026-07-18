@@ -4,6 +4,8 @@ import {
   DollarSign,
   FileText,
   Bug,
+  GraduationCap,
+  BarChart3,
   type LucideIcon
 } from 'lucide-react';
 
@@ -89,6 +91,68 @@ export const navigation: NavItem[] = [
       {
         title: 'Eventos Clave',
         href: '/vigilancia-epidemiologica/eventos-clave',
+      },
+    ],
+  },
+  {
+    title: 'Gráficos',
+    href: '/produccion',
+    icon: BarChart3,
+    children: [
+      {
+        title: 'Primeras Causas',
+        href: '/produccion/primeras-causas',
+        children: [
+          {
+            title: 'Egresos',
+            href: '/produccion/egresos',
+          },
+          {
+            title: 'Medicina General',
+            href: '/produccion/medicina-general',
+          },
+        ],
+      },
+      {
+        title: 'Producción',
+        href: '/produccion/reportes',
+        children: [
+          {
+            title: 'Consultas',
+            href: '/produccion/consultas',
+          },
+          {
+            title: 'Laboratorio',
+            href: '/produccion/laboratorio',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Capacitaciones',
+    href: '/capacitaciones',
+    icon: GraduationCap,
+    children: [
+      {
+        title: 'Afiliaciones en Línea',
+        href: '/capacitaciones/aps',
+      },
+      {
+        title: 'Hospital',
+        href: '/capacitaciones/hospital',
+      },
+      {
+        title: 'IHCE',
+        href: '/capacitaciones/ihce',
+      },
+      {
+        title: 'MIPRES',
+        href: '/capacitaciones/mipres',
+      },
+      {
+        title: 'Xenco',
+        href: '/capacitaciones/xenco',
       },
     ],
   },

@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portal de Inducción — Personal de Salud
 
-## Getting Started
+Aplicación web educativa para facilitar el proceso de incorporación del personal nuevo en una institución de salud. Presenta contenido formativo organizado por módulos temáticos, con material explicativo, recursos multimedia y evaluaciones interactivas.
 
-First, run the development server:
+## Tecnologías
+
+- **Next.js 16** (App Router)
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** — animaciones
+- **Recharts** — gráficas y visualizaciones
+- **next-themes** — modo claro/oscuro
+- **Lucide React** — iconos
+
+## Módulos del portal
+
+| Módulo | Ruta |
+|--------|------|
+| Página principal | `/` |
+| Seguridad de la Información | `/seguridad-informacion` |
+| Facturación de Servicios P&P | `/facturacion-pyp` |
+| Historias Clínicas | `/historias-clinicas` |
+| Producción | `/produccion` |
+| Vigilancia Epidemiológica | `/vigilancia-epidemiologica` |
+| Capacitaciones | `/capacitaciones` |
+
+## Instalación y desarrollo
 
 ```bash
+# Clonar el repositorio
+git clone https://github.com/epjuan21/induccion-salud.git
+cd induccion-salud
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Servidor de desarrollo (con hot reload)
+npm run build    # Build de producción
+npm run start    # Servidor de producción
+npm run lint     # Verificar errores de ESLint
+```
 
-## Learn More
+## Estructura del proyecto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                    # Rutas y páginas (Next.js App Router)
+│   ├── capacitaciones/
+│   ├── facturacion-pyp/
+│   ├── historias-clinicas/
+│   ├── produccion/
+│   ├── seguridad-informacion/
+│   └── vigilancia-epidemiologica/
+├── components/
+│   ├── charts/             # Componentes de gráficas (Recharts)
+│   ├── content/            # Bloques de contenido editorial
+│   ├── layout/             # Header, Footer, Sidebar, etc.
+│   ├── templates/          # Plantillas de módulos y secciones
+│   └── ui/                 # Componentes base (Button, Card, Quiz, etc.)
+├── data/
+│   └── navigation.ts       # Estructura de navegación del portal
+├── hooks/                  # Custom hooks
+└── lib/
+    └── utils.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentación
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Arquitectura](docs/project-overview/ARCHITECTURE.md)
+- [Funcionalidades](docs/project-overview/FUNCTIONALITY.md)
+- [Guía de desarrollo](docs/project-overview/DEVELOPMENT.md)
+- [Despliegue](docs/project-overview/DEPLOYMENT.md)
+- [CI/CD](docs/project-overview/CICD.md)
 
-## Deploy on Vercel
+## Despliegue
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La forma más sencilla de desplegar es con [Vercel](https://vercel.com/new):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Conectar el repositorio en Vercel
+2. Configurar el directorio raíz como `induccion-salud/`
+3. Vercel detecta automáticamente Next.js y aplica la configuración correcta
+
+Ver [DEPLOYMENT.md](docs/project-overview/DEPLOYMENT.md) para más opciones.

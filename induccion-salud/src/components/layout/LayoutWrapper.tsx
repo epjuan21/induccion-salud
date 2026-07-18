@@ -26,9 +26,8 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         {/* Contenido principal con margen para el sidebar */}
         <main
           className={cn(
-            'flex-1 transition-all duration-200',
-            'lg:ml-[280px]',
-            !sidebar.isExpanded && 'lg:ml-[72px]'
+            'flex-1 transition-all duration-220 ease-in-out',
+            sidebar.isExpanded ? 'lg:ml-68' : 'lg:ml-15'
           )}
         >
           <div className="min-h-[calc(100vh-4rem-4rem)]">

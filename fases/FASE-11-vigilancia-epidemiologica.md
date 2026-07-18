@@ -143,8 +143,14 @@ export default function VigilanciaEpidemiologicaPage() {
 
 ### Archivo: `src/app/vigilancia-epidemiologica/conceptos-generales/page.tsx`
 
+> **CONTENIDO INSTITUCIONAL AÑADIDO** (actualización posterior a la fase original):
+> - Sección "Fichas y Protocolos de Vigilancia" con dos recursos: carpeta `\SIVIGILA\` del servidor y enlace al buscador oficial del INS.
+> - Sección "Consideraciones Especiales por Evento" con:
+>   - **Dengue**: confirmación solo con ELISA positivo o prueba rápida positiva; descarte solo con ELISA negativo; prueba rápida negativa deja el caso como probable.
+>   - **APTR (Accidentes por Animales Potencialmente Transmisores de Rabia)**: usar archivo `\SIVIGILA\CLASIFICACIÓN APTR2.xlsm` del servidor.
+
 ```tsx
-import { BookOpen } from 'lucide-react';
+import { BookOpen, FolderOpen, ExternalLink, FileText } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
 import { ContentBlock } from '@/components/content';
 import { Alert, Accordion, Card, CardContent } from '@/components/ui';
@@ -322,6 +328,145 @@ export default function ConceptosGeneralesPage() {
           </ul>
         </Alert>
       </ContentBlock>
+
+      {/* Fichas y Protocolos */}
+      <div className="my-8">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          Fichas y Protocolos de Vigilancia
+        </h2>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Las fichas de notificación y los protocolos de vigilancia contienen las definiciones
+          de caso, criterios de clasificación y procedimientos para cada evento. Puedes
+          consultarlos en los siguientes recursos:
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    Servidor institucional
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    En el servidor principal del hospital encontrarás la carpeta{' '}
+                    <strong className="text-gray-800 dark:text-gray-200">SIVIGILA</strong>{' '}
+                    con las fichas y protocolos actualizados de todos los eventos de
+                    vigilancia en salud pública.
+                  </p>
+                  <p className="text-xs font-mono bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded">
+                    \SIVIGILA\
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <ExternalLink className="w-5 h-5 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    Instituto Nacional de Salud (INS)
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    El INS publica oficialmente todas las fichas y protocolos de
+                    vigilancia. Descárgalos desde el buscador oficial de eventos.
+                  </p>
+                  <a
+                    href="https://www.ins.gov.co/buscador-eventos/Paginas/Fichas-y-Protocolos.aspx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-green-700 dark:text-green-400 hover:underline font-medium"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    ins.gov.co — Fichas y Protocolos
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Notas especiales por evento */}
+      <div className="my-8">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          Consideraciones Especiales por Evento
+        </h2>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Algunos eventos tienen criterios de clasificación particulares que es importante
+          conocer para evitar errores en la notificación.
+        </p>
+
+        {/* Dengue */}
+        <Card className="mb-4 border-l-4 border-l-orange-500">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <FileText className="w-5 h-5 text-orange-500 flex-shrink-0" />
+              <h3 className="font-semibold text-gray-900 dark:text-white text-base">
+                Dengue — Criterios de clasificación de laboratorio
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2 p-3 rounded-md bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5">✓</span>
+                <div>
+                  <p className="font-semibold text-green-800 dark:text-green-300">Caso confirmado</p>
+                  <p className="text-green-700 dark:text-green-400">
+                    Prueba ELISA confirmatoria <strong>positiva</strong> o prueba rápida <strong>positiva</strong>.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 p-3 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5">✗</span>
+                <div>
+                  <p className="font-semibold text-red-800 dark:text-red-300">Caso descartado</p>
+                  <p className="text-red-700 dark:text-red-400">
+                    Únicamente con prueba ELISA <strong>negativa</strong>.
+                  </p>
+                </div>
+              </div>
+              <Alert variant="warning" title="Prueba rápida negativa — no descarta">
+                Si la prueba rápida es <strong>negativa</strong>, el caso <strong>no se descarta</strong>.
+                Debe mantenerse como <strong>caso probable</strong> hasta obtener una prueba ELISA confirmatoria.
+              </Alert>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* APTR */}
+        <Card className="border-l-4 border-l-purple-500">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <FileText className="w-5 h-5 text-purple-500 flex-shrink-0" />
+              <h3 className="font-semibold text-gray-900 dark:text-white text-base">
+                Accidentes por Animales Potencialmente Transmisores de Rabia (APTR)
+              </h3>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              Para la clasificación y gestión de estos casos se utiliza un archivo de apoyo
+              ubicado en el servidor institucional:
+            </p>
+            <div className="flex items-center gap-2 p-3 rounded-md bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+              <FolderOpen className="w-4 h-4 text-purple-500 flex-shrink-0" />
+              <div>
+                <p className="text-xs font-mono text-purple-700 dark:text-purple-300">
+                  \SIVIGILA\CLASIFICACIÓN APTR2.xlsm
+                </p>
+                <p className="text-xs text-purple-600 dark:text-purple-400 mt-0.5">
+                  Archivo Excel con macros — Servidor Hospital
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* FAQ */}
       <div className="my-8">

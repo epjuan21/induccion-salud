@@ -39,60 +39,68 @@ export function Sidebar({
 
     return (
       <div key={item.href}>
-        <div className="relative">
-          {hasChildren ? (
-            <button
-              onClick={() => onToggleSection(item.href)}
-              className={cn(
-                'w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-                'hover:bg-gray-100 dark:hover:bg-gray-800',
-                active && 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-                !active && 'text-gray-700 dark:text-gray-300'
-              )}
-            >
-              {Icon && <Icon className="w-5 h-5 flex-shrink-0" />}
-              {isExpanded && (
-                <>
-                  <span className="flex-1 text-left truncate">{item.title}</span>
-                  <ChevronDown
-                    className={cn(
-                      'w-4 h-4 transition-transform',
-                      expanded && 'rotate-180'
-                    )}
-                  />
-                </>
-              )}
-            </button>
-          ) : (
-            <Link
-              href={item.href}
-              onClick={onCloseMobile}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-                'hover:bg-gray-100 dark:hover:bg-gray-800',
-                active && 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-                !active && 'text-gray-700 dark:text-gray-300',
-                depth > 0 && 'ml-6'
-              )}
-            >
-              {Icon && <Icon className="w-5 h-5 flex-shrink-0" />}
-              {isExpanded && <span className="truncate">{item.title}</span>}
-            </Link>
-          )}
-        </div>
+        {hasChildren ? (
+          <button
+            onClick={() => onToggleSection(item.href)}
+            title={!isExpanded ? item.title : undefined}
+            className={cn(
+              'w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+              'hover:bg-gray-100 dark:hover:bg-gray-800',
+              active
+                ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
+                : 'text-gray-700 dark:text-gray-300',
+              !isExpanded && 'justify-center px-2'
+            )}
+          >
+            {Icon && (
+              <Icon className={cn('shrink-0', isExpanded ? 'w-5 h-5' : 'w-5 h-5')} />
+            )}
+            {isExpanded && (
+              <>
+                <span className="flex-1 text-left leading-snug">{item.title}</span>
+                <ChevronDown
+                  className={cn(
+                    'w-4 h-4 shrink-0 transition-transform text-gray-400',
+                    expanded && 'rotate-180'
+                  )}
+                />
+              </>
+            )}
+          </button>
+        ) : (
+          <Link
+            href={item.href}
+            onClick={onCloseMobile}
+            title={!isExpanded ? item.title : undefined}
+            className={cn(
+              'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+              'hover:bg-gray-100 dark:hover:bg-gray-800',
+              active
+                ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
+                : 'text-gray-700 dark:text-gray-300',
+              depth > 0 && isExpanded && 'pl-4',
+              !isExpanded && 'justify-center px-2'
+            )}
+          >
+            {Icon && <Icon className="w-5 h-5 shrink-0" />}
+            {isExpanded && (
+              <span className="leading-snug">{item.title}</span>
+            )}
+          </Link>
+        )}
 
         {/* Subsecciones */}
         {hasChildren && isExpanded && (
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {expanded && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.18, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
-                <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-gray-700">
+                <div className="ml-3 mt-0.5 mb-1 pl-3 space-y-0.5 border-l-2 border-gray-200 dark:border-gray-700">
                   {item.children!.map(child => renderNavItem(child, depth + 1))}
                 </div>
               </motion.div>
@@ -104,84 +112,90 @@ export function Sidebar({
   };
 
   const sidebarContent = (
-    <div className="h-full flex flex-col">
-      {/* Header del sidebar - móvil: título y cerrar, desktop: botón colapsar */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-        {/* Móvil: título */}
-        <span className="lg:hidden font-semibold text-gray-900 dark:text-white">Menú</span>
-
-        {/* Desktop: botón colapsar */}
-        <button
-          onClick={onToggle}
-          className="hidden lg:flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors w-full"
-        >
-          {isExpanded ? (
-            <>
-              <ChevronLeft className="w-4 h-4" />
-              <span>Colapsar</span>
-            </>
-          ) : (
-            <ChevronRight className="w-4 h-4" />
-          )}
-        </button>
-
-        {/* Móvil: botón cerrar */}
+    <div className="h-full flex flex-col overflow-hidden">
+      {/* Header — solo en móvil */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800 lg:hidden">
+        <span className="font-semibold text-gray-900 dark:text-white text-sm">Navegación</span>
         <button
           onClick={onCloseMobile}
-          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+          className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
+          aria-label="Cerrar menú"
         >
           <X className="w-5 h-5" />
         </button>
       </div>
 
       {/* Navegación */}
-      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-        {navigation.map(item => renderNavItem(item))}
+      <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">
+        {navigation.map((item) => renderNavItem(item))}
       </nav>
     </div>
   );
 
   return (
     <>
-      {/* Sidebar Desktop */}
+      {/* ── SIDEBAR DESKTOP ── */}
       <motion.aside
         initial={false}
-        animate={{ width: isExpanded ? 280 : 72 }}
-        transition={{ duration: 0.2 }}
+        animate={{ width: isExpanded ? 272 : 60 }}
+        transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
         className={cn(
-          'hidden lg:flex flex-col fixed left-0 top-16 bottom-0',
+          'hidden lg:block fixed left-0 top-16 bottom-0',
           'bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800',
-          'z-50'
+          'z-40 overflow-visible'
         )}
       >
         {sidebarContent}
+
+        {/* Tab de colapso — borde derecho del sidebar */}
+        <button
+          onClick={onToggle}
+          aria-label={isExpanded ? 'Colapsar menú' : 'Expandir menú'}
+          className={cn(
+            'absolute -right-3 top-6',
+            'w-6 h-6 rounded-full',
+            'bg-white dark:bg-gray-900',
+            'border border-gray-200 dark:border-gray-700',
+            'flex items-center justify-center',
+            'shadow-sm hover:shadow-md',
+            'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200',
+            'transition-all duration-150 hover:scale-110',
+            'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1'
+          )}
+        >
+          {isExpanded
+            ? <ChevronLeft className="w-3.5 h-3.5" />
+            : <ChevronRight className="w-3.5 h-3.5" />
+          }
+        </button>
       </motion.aside>
 
-      {/* Overlay móvil */}
+      {/* ── OVERLAY MÓVIL ── */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             onClick={onCloseMobile}
-            className="lg:hidden fixed inset-0 bg-black/50 z-40"
+            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
           />
         )}
       </AnimatePresence>
 
-      {/* Sidebar Móvil (Drawer) */}
+      {/* ── SIDEBAR MÓVIL (Drawer) ── */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.aside
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
             className={cn(
               'lg:hidden fixed left-0 top-0 bottom-0 w-72',
               'bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800',
-              'z-50'
+              'z-50 shadow-xl'
             )}
           >
             {sidebarContent}
