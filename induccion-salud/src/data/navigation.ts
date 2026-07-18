@@ -6,6 +6,7 @@ import {
   Bug,
   GraduationCap,
   BarChart3,
+  Building2,
   type LucideIcon
 } from 'lucide-react';
 
@@ -138,6 +139,23 @@ export const navigation: NavItem[] = [
           {
             title: 'Laboratorio',
             href: '/produccion/laboratorio',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'EAPB',
+    href: '/eapb',
+    icon: Building2,
+    children: [
+      {
+        title: 'SURA',
+        href: '/eapb/sura',
+        children: [
+          {
+            title: 'Gestión Usuarios',
+            href: '/eapb/sura/gestion-usuarios',
           },
         ],
       },
