@@ -35,7 +35,7 @@ export const navigation: NavItem[] = [
     ],
   },
   {
-    title: 'Facturación de Servicios P&P',
+    title: 'Facturación de Servicios PYM',
     href: '/facturacion-pyp',
     icon: DollarSign,
     children: [
