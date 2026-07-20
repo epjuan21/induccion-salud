@@ -1,4 +1,4 @@
-import { FileText, FolderOpen } from 'lucide-react';
+import { ExternalLink, FileText, FolderOpen } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
 import { ArticleContainer, SectionBackground } from '@/components/layout';
 import { CompactCard } from '@/components/ui';
@@ -47,6 +47,21 @@ export default function AptrPage() {
                 </p>
               </div>
             </div>
+
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-4 mb-3">
+              Como apoyo adicional, esta herramienta permite orientar de forma rápida la
+              clasificación del evento APTR según la información inicial del caso.
+            </p>
+
+            <a
+              href="https://www.referencias.app/calculations/aptr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-md border border-purple-200 dark:border-purple-800 bg-white dark:bg-gray-900 px-3 py-2 text-xs font-medium text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              Herramienta para clasificación APTR
+            </a>
           </CompactCard>
         </ArticleContainer>
       </SectionBackground>
