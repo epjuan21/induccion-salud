@@ -140,6 +140,44 @@ export const navigation: NavItem[] = [
             title: 'Laboratorio',
             href: '/produccion/laboratorio',
           },
+          {
+            title: 'Producción Egresos',
+            href: '/produccion/produccion-egresos',
+          },
+          {
+            title: 'Higiene Oral',
+            href: '/produccion/higiene-oral',
+          },
+          {
+            title: 'Distribución Consultas',
+            href: '/produccion/distribucion-consultas',
+          },
+          {
+            title: 'Medicamentos',
+            href: '/produccion/medicamentos',
+          },
+          {
+            title: 'Procedimientos PyM',
+            href: '/produccion/procedimientos-pym',
+          },
+          {
+            title: 'Rayos X',
+            href: '/produccion/rayos-x',
+          },
+          {
+            title: 'Remisiones',
+            href: '/produccion/remisiones',
+          },
+        ],
+      },
+      {
+        title: 'Población',
+        href: '/produccion/poblacion',
+        children: [
+          {
+            title: 'Aseguramiento',
+            href: '/produccion/poblacion/aseguramiento',
+          },
         ],
       },
     ],
