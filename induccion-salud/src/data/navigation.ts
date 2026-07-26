@@ -7,6 +7,7 @@ import {
   GraduationCap,
   BarChart3,
   Building2,
+  Palette,
   type LucideIcon
 } from 'lucide-react';
 
@@ -184,6 +185,20 @@ export const navigation: NavItem[] = [
           },
         ],
       },
+      {
+        title: 'Oportunidad',
+        href: '/produccion/oportunidad',
+        children: [
+          {
+            title: 'Consulta',
+            href: '/produccion/oportunidad/consulta',
+          },
+          {
+            title: 'Triage',
+            href: '/produccion/oportunidad/triage',
+          },
+        ],
+      },
     ],
   },
   {
@@ -227,6 +242,17 @@ export const navigation: NavItem[] = [
       {
         title: 'Xenco',
         href: '/capacitaciones/xenco',
+      },
+    ],
+  },
+  {
+    title: 'Otras Referencias',
+    href: '/otras-referencias',
+    icon: Palette,
+    children: [
+      {
+        title: 'Paleta Ciclos de Vida',
+        href: '/otras-referencias/paleta-ciclos-vida',
       },
     ],
   },

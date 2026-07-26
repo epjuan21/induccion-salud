@@ -1,4 +1,4 @@
-import { Shield, DollarSign, FileText, Bug, BookOpen, Users, Award, Clock } from 'lucide-react';
+import { Shield, DollarSign, FileText, Bug, BookOpen, Users, Award, Clock, Palette } from 'lucide-react';
 import { ModuleCard } from '@/components/ui/ModuleCard';
 import { Alert } from '@/components/ui/Alert';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -62,6 +62,22 @@ const stats = [
   { icon: FileText, label: 'Lecciones', value: '11' },
   { icon: Clock, label: 'Duración estimada', value: '8 horas' },
   { icon: Award, label: 'Certificación', value: 'Incluida' },
+];
+
+const references = [
+  {
+    title: 'Paleta Ciclos de Vida',
+    description: 'Referencia visual de colores para diseños relacionados con las etapas de ciclos de vida.',
+    href: '/otras-referencias/paleta-ciclos-vida',
+    icon: Palette,
+    iconColor: 'text-rose-600 dark:text-rose-400',
+    iconBgColor: 'bg-rose-100 dark:bg-rose-900/30',
+    subsections: [
+      { title: 'Primera infancia', href: '/otras-referencias/paleta-ciclos-vida#primera-infancia' },
+      { title: 'Infancia', href: '/otras-referencias/paleta-ciclos-vida#infancia' },
+      { title: 'Adolescencia', href: '/otras-referencias/paleta-ciclos-vida#adolescencia' },
+    ],
+  },
 ];
 
 export default function HomePage() {
@@ -128,6 +144,26 @@ export default function HomePage() {
               iconColor={module.iconColor}
               iconBgColor={module.iconBgColor}
               subsections={module.subsections}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+          Otras Referencias
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {references.map((reference) => (
+            <ModuleCard
+              key={reference.href}
+              title={reference.title}
+              description={reference.description}
+              href={reference.href}
+              icon={reference.icon}
+              iconColor={reference.iconColor}
+              iconBgColor={reference.iconBgColor}
+              subsections={reference.subsections}
             />
           ))}
         </div>
