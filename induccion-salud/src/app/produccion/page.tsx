@@ -48,6 +48,11 @@ const subsections = [
     href: '/produccion/remisiones',
   },
   {
+    title: 'Triage',
+    description: 'Reporte de producción de triage embebido desde Power BI.',
+    href: '/produccion/triage',
+  },
+  {
     title: 'Aseguramiento',
     description: 'Reporte de población asegurada embebido desde Power BI.',
     href: '/produccion/poblacion/aseguramiento',
@@ -77,9 +82,9 @@ export default function ProduccionPage() {
           Esta sección reúne los reportes de producción de la institución. Cada
           página presenta un tablero interactivo de Power BI con la información
           correspondiente. Se encuentran disponibles los reportes de Consultas,
-          Laboratorio, Producción Egresos, Higiene Oral, Distribución Consultas
-          Medicamentos, Procedimientos PyM, Rayos X, Remisiones, Aseguramiento
-          y Egresos Hospitalarios.
+          Laboratorio, Producción Egresos, Higiene Oral, Distribución Consultas,
+          Medicamentos, Procedimientos PyM, Rayos X, Remisiones, Triage,
+          Aseguramiento y Egresos Hospitalarios.
         </p>
       }
     />

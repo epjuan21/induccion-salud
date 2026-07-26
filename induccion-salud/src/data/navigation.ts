@@ -168,6 +168,10 @@ export const navigation: NavItem[] = [
             title: 'Remisiones',
             href: '/produccion/remisiones',
           },
+          {
+            title: 'Triage',
+            href: '/produccion/triage',
+          },
         ],
       },
       {
