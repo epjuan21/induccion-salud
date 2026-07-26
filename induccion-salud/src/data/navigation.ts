@@ -199,6 +199,16 @@ export const navigation: NavItem[] = [
           },
         ],
       },
+      {
+        title: 'Coberturas',
+        href: '/produccion/coberturas',
+        children: [
+          {
+            title: 'Saviasalud',
+            href: '/produccion/coberturas/saviasalud',
+          },
+        ],
+      },
     ],
   },
   {
