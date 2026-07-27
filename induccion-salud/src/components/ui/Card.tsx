@@ -5,6 +5,7 @@ interface CardProps {
   className?: string;
   variant?: 'default' | 'bordered' | 'elevated';
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  id?: string;
 }
 
 export function Card({
@@ -12,9 +13,11 @@ export function Card({
   className,
   variant = 'default',
   padding = 'md',
+  id,
 }: CardProps) {
   return (
     <div
+      id={id}
       className={cn(
         'rounded-xl bg-white dark:bg-gray-800 transition-colors',
         {
