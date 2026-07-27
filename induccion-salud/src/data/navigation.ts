@@ -207,6 +207,10 @@ export const navigation: NavItem[] = [
             title: 'Saviasalud',
             href: '/produccion/coberturas/saviasalud',
           },
+          {
+            title: 'NuevaEPS',
+            href: '/produccion/coberturas/nueva-eps',
+          },
         ],
       },
     ],
