@@ -51,6 +51,32 @@ export const navigation: NavItem[] = [
       {
         title: 'Ciclos de Vida',
         href: '/facturacion-pyp/ciclos-vida',
+        children: [
+          {
+            title: 'Primera Infancia',
+            href: '/facturacion-pyp/ciclos-vida/primera-infancia',
+          },
+          {
+            title: 'Infancia',
+            href: '/facturacion-pyp/ciclos-vida/infancia',
+          },
+          {
+            title: 'Adolescencia',
+            href: '/facturacion-pyp/ciclos-vida/adolescencia',
+          },
+          {
+            title: 'Juventud',
+            href: '/facturacion-pyp/ciclos-vida/juventud',
+          },
+          {
+            title: 'Adultez',
+            href: '/facturacion-pyp/ciclos-vida/adultez',
+          },
+          {
+            title: 'Vejez',
+            href: '/facturacion-pyp/ciclos-vida/vejez',
+          },
+        ],
       },
       {
         title: 'Vacunación',
