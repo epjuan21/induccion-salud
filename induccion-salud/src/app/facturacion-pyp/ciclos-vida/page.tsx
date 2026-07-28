@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Users, ArrowRight } from 'lucide-react';
+import { Users, ArrowRight, Layers } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
 import { ContentBlock } from '@/components/content';
 import { Alert, Accordion } from '@/components/ui';
@@ -120,6 +120,28 @@ export default function CiclosVidaPage() {
           </ul>
         </Alert>
       </ContentBlock>
+
+      {/* Guía de clasificación */}
+      <div className="my-8">
+        <Link
+          href="/facturacion-pyp/ciclos-vida/clasificacion"
+          className="group flex items-start gap-4 rounded-lg border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 p-5 transition-all hover:shadow-md dark:border-blue-800 dark:from-blue-900/20 dark:to-cyan-900/20"
+        >
+          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white/70 text-blue-700 shadow-sm dark:bg-gray-900/40 dark:text-blue-300">
+            <Layers className="h-6 w-6" />
+          </span>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-gray-900 dark:text-white">
+              Guía: Clasificación por Ciclo de Vida y Frecuencia de Edad
+            </h3>
+            <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+              Aprende de forma clara y didáctica cómo se clasifican los ciclos de vida y cómo se
+              dividen en frecuencias de edad.
+            </p>
+          </div>
+          <ArrowRight className="h-5 w-5 flex-shrink-0 text-blue-500 transition-transform group-hover:translate-x-1 dark:text-blue-400" />
+        </Link>
+      </div>
 
       {/* Selección de ciclo de vida */}
       <div className="my-8">

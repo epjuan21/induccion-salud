@@ -53,6 +53,10 @@ export const navigation: NavItem[] = [
         href: '/facturacion-pyp/ciclos-vida',
         children: [
           {
+            title: 'Clasificación por Edad',
+            href: '/facturacion-pyp/ciclos-vida/clasificacion',
+          },
+          {
             title: 'Primera Infancia',
             href: '/facturacion-pyp/ciclos-vida/primera-infancia',
           },
