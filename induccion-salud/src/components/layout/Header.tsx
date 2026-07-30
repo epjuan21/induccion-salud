@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -23,10 +24,14 @@ export function Header({ onMenuClick }: HeaderProps) {
 
         {/* Logo y Título */}
         <Link href="/" className="flex items-center gap-3">
-          {/* Placeholder para logo - reemplazar con imagen real */}
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">+</span>
-          </div>
+          <Image
+            src="/images/logo.svg"
+            alt="Logo Hospital San Antonio de Betania"
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0"
+            priority
+          />
           <div className="hidden sm:block">
             <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
               Portal de Inducción

@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import {
-  Hospital,
   Target,
   Eye,
   Scale,
@@ -121,9 +121,14 @@ export default function HomePage() {
             </span>
 
             <div className="mt-6 flex items-center gap-4">
-              <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur">
-                <Hospital className="h-9 w-9 text-white" />
-              </div>
+              <Image
+                src="/images/logo.svg"
+                alt="Logo Hospital San Antonio de Betania"
+                width={64}
+                height={64}
+                className="h-16 w-16 shrink-0 rounded-full bg-white shadow-lg ring-1 ring-white/40"
+                priority
+              />
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
                 Hospital San Antonio de Betania
               </h1>
