@@ -11,6 +11,8 @@ import {
   ClipboardCheck,
   Sparkles,
   ExternalLink,
+  Table2,
+  BarChart3,
 } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
@@ -72,6 +74,27 @@ const objetivos = [
   'Ofrecer a las Entidades Promotoras de Salud y demás personas naturales o jurídicas que los demanden, servicios y paquetes de servicios a tarifas competitivas en el mercado.',
   'Satisfacer los requerimientos del entorno, adecuando continuamente sus servicios y funcionamiento.',
   'Garantizar los mecanismos de participación ciudadana y comunitaria establecidos por la ley y los reglamentos.',
+];
+
+const herramientas = [
+  {
+    title: 'Referencias en Salud',
+    description:
+      'Acceso a tablas de referencia y herramientas de utilidad del sector salud.',
+    href: 'https://www.referencias.app/',
+    icon: Table2,
+    iconColor: 'text-primary-600 dark:text-primary-400',
+    iconBgColor: 'bg-primary-100 dark:bg-primary-900/30',
+  },
+  {
+    title: 'ChartForge',
+    description:
+      'Herramienta para crear gráficos de manera rápida y visual.',
+    href: 'https://chartforge-iota.vercel.app/',
+    icon: BarChart3,
+    iconColor: 'text-secondary-600 dark:text-secondary-400',
+    iconBgColor: 'bg-secondary-100 dark:bg-secondary-900/30',
+  },
 ];
 
 export default function HomePage() {
@@ -230,6 +253,55 @@ export default function HomePage() {
               </p>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Herramientas Externas */}
+      <section className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-gray-50 to-primary-50/60 p-8 dark:border-gray-800 dark:from-gray-900 dark:to-primary-950/30 sm:p-10">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary-200/40 blur-3xl dark:bg-primary-800/20" />
+        <div className="relative">
+          <div className="mb-8 text-center">
+            <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-600 text-white shadow-lg shadow-primary-600/30">
+              <ExternalLink className="h-6 w-6" />
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Herramientas Externas
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-gray-600 dark:text-gray-400">
+              Recursos y aplicaciones de apoyo para tu labor diaria en el sector
+              salud.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {herramientas.map((herramienta) => {
+              const Icon = herramienta.icon;
+              return (
+                <a
+                  key={herramienta.href}
+                  href={herramienta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-primary-700"
+                >
+                  <span
+                    className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${herramienta.iconBgColor} ${herramienta.iconColor}`}
+                  >
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="flex items-center gap-1.5 text-lg font-semibold text-gray-900 dark:text-white">
+                      {herramienta.title}
+                      <ExternalLink className="h-4 w-4 text-gray-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary-600 dark:group-hover:text-primary-400" />
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                      {herramienta.description}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>
