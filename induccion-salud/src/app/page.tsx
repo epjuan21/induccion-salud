@@ -19,6 +19,9 @@ import {
   BedSingle,
   DoorOpen,
   Baby,
+  Stethoscope,
+  Microscope,
+  Siren,
 } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
@@ -127,6 +130,58 @@ const capacidadInstalada = [
     iconColor: 'text-rose-600 dark:text-rose-400',
     iconBgColor: 'bg-rose-100 dark:bg-rose-900/30',
     items: [{ concepto: 'Partos', cantidad: 1 }],
+  },
+];
+
+const serviciosHabilitados = [
+  {
+    grupo: 'Internación',
+    icon: BedDouble,
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    iconBgColor: 'bg-blue-100 dark:bg-blue-900/30',
+    items: [
+      { codigo: '129', nombre: 'Hospitalización Adultos' },
+      { codigo: '130', nombre: 'Hospitalización Pediátrica' },
+    ],
+  },
+  {
+    grupo: 'Consulta Externa',
+    icon: Stethoscope,
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    iconBgColor: 'bg-teal-100 dark:bg-teal-900/30',
+    items: [
+      { codigo: '312', nombre: 'Enfermería' },
+      { codigo: '328', nombre: 'Medicina General' },
+      { codigo: '334', nombre: 'Odontología General' },
+      { codigo: '344', nombre: 'Psicología' },
+      { codigo: '345', nombre: 'Psiquiatría' },
+      { codigo: '420', nombre: 'Vacunación' },
+    ],
+  },
+  {
+    grupo: 'Apoyo Diagnóstico y Complementación Terapéutica',
+    icon: Microscope,
+    iconColor: 'text-indigo-600 dark:text-indigo-400',
+    iconBgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
+    items: [
+      { codigo: '706', nombre: 'Laboratorio Clínico' },
+      { codigo: '712', nombre: 'Toma de Muestras de Laboratorio Clínico' },
+      { codigo: '714', nombre: 'Servicio Farmacéutico' },
+      { codigo: '744', nombre: 'Imágenes Diagnósticas - Ionizantes' },
+      { codigo: '748', nombre: 'Radiología Odontológica' },
+      { codigo: '749', nombre: 'Toma de Muestras de Cuello Uterino y Ginecológicas' },
+    ],
+  },
+  {
+    grupo: 'Atención Inmediata',
+    icon: Siren,
+    iconColor: 'text-rose-600 dark:text-rose-400',
+    iconBgColor: 'bg-rose-100 dark:bg-rose-900/30',
+    items: [
+      { codigo: '1101', nombre: 'Atención del Parto' },
+      { codigo: '1102', nombre: 'Urgencias' },
+      { codigo: '1103', nombre: 'Transporte Asistencial Básico' },
+    ],
   },
 ];
 
@@ -361,6 +416,55 @@ export default function HomePage() {
                       <span className="font-semibold text-gray-900 dark:text-white">
                         {item.cantidad}
                       </span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Servicios Habilitados */}
+      <section className="mb-16">
+        <div className="mb-8 flex flex-col items-center text-center">
+          <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400">
+            <ClipboardCheck className="h-6 w-6" />
+          </span>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Servicios Habilitados
+          </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-gray-600 dark:text-gray-400">
+            Servicios registrados en el REPS que la institución se encuentra
+            habilitada para prestar.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          {serviciosHabilitados.map((grupo) => {
+            const Icon = grupo.icon;
+            return (
+              <Card key={grupo.grupo} padding="none" className="flex h-full flex-col overflow-hidden">
+                <div className="flex items-center gap-3 border-b border-gray-100 p-5 dark:border-gray-800">
+                  <span
+                    className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${grupo.iconBgColor} ${grupo.iconColor}`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {grupo.grupo}
+                  </h3>
+                </div>
+                <ul className="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
+                  {grupo.items.map((item) => (
+                    <li
+                      key={item.codigo}
+                      className="flex items-center gap-4 px-5 py-3 text-sm"
+                    >
+                      <span className="shrink-0 font-mono text-xs font-semibold text-gray-400 dark:text-gray-500">
+                        {item.codigo}
+                      </span>
+                      <span className="text-gray-600 dark:text-gray-300">{item.nombre}</span>
                     </li>
                   ))}
                 </ul>
