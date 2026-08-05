@@ -13,6 +13,12 @@ import {
   ExternalLink,
   Table2,
   BarChart3,
+  Building2,
+  Ambulance,
+  BedDouble,
+  BedSingle,
+  DoorOpen,
+  Baby,
 } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
@@ -74,6 +80,54 @@ const objetivos = [
   'Ofrecer a las Entidades Promotoras de Salud y demás personas naturales o jurídicas que los demanden, servicios y paquetes de servicios a tarifas competitivas en el mercado.',
   'Satisfacer los requerimientos del entorno, adecuando continuamente sus servicios y funcionamiento.',
   'Garantizar los mecanismos de participación ciudadana y comunitaria establecidos por la ley y los reglamentos.',
+];
+
+const capacidadInstalada = [
+  {
+    grupo: 'Ambulancias',
+    icon: Ambulance,
+    iconColor: 'text-red-600 dark:text-red-400',
+    iconBgColor: 'bg-red-100 dark:bg-red-900/30',
+    items: [{ concepto: 'Básica', cantidad: 2 }],
+  },
+  {
+    grupo: 'Camas',
+    icon: BedDouble,
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    iconBgColor: 'bg-blue-100 dark:bg-blue-900/30',
+    items: [
+      { concepto: 'Pediátrica', cantidad: 2 },
+      { concepto: 'Adultos', cantidad: 4 },
+    ],
+  },
+  {
+    grupo: 'Camillas',
+    icon: BedSingle,
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    iconBgColor: 'bg-amber-100 dark:bg-amber-900/30',
+    items: [
+      { concepto: 'Observación Pediátrica', cantidad: 2 },
+      { concepto: 'Observación Adultos Hombres', cantidad: 3 },
+      { concepto: 'Observación Adultos Mujeres', cantidad: 3 },
+    ],
+  },
+  {
+    grupo: 'Consultorios',
+    icon: DoorOpen,
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    iconBgColor: 'bg-teal-100 dark:bg-teal-900/30',
+    items: [
+      { concepto: 'Urgencias', cantidad: 1 },
+      { concepto: 'Consulta Externa', cantidad: 8 },
+    ],
+  },
+  {
+    grupo: 'Salas',
+    icon: Baby,
+    iconColor: 'text-rose-600 dark:text-rose-400',
+    iconBgColor: 'bg-rose-100 dark:bg-rose-900/30',
+    items: [{ concepto: 'Partos', cantidad: 1 }],
+  },
 ];
 
 const herramientas = [
@@ -258,6 +312,61 @@ export default function HomePage() {
               </p>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Capacidad Instalada */}
+      <section className="mb-16">
+        <div className="mb-8 flex flex-col items-center text-center">
+          <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary-100 text-secondary-600 dark:bg-secondary-900/30 dark:text-secondary-400">
+            <Building2 className="h-6 w-6" />
+          </span>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Capacidad Instalada de la Institución
+          </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-gray-600 dark:text-gray-400">
+            Recursos físicos disponibles para la prestación de los servicios de
+            salud.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {capacidadInstalada.map((grupo) => {
+            const Icon = grupo.icon;
+            const total = grupo.items.reduce((sum, item) => sum + item.cantidad, 0);
+            return (
+              <Card key={grupo.grupo} padding="none" className="flex h-full flex-col overflow-hidden">
+                <div className="flex items-center justify-between gap-3 border-b border-gray-100 p-5 dark:border-gray-800">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${grupo.iconBgColor} ${grupo.iconColor}`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {grupo.grupo}
+                    </h3>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center rounded-full bg-primary-600 px-3 py-1 text-sm font-bold text-white">
+                    {total}
+                  </span>
+                </div>
+                <ul className="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
+                  {grupo.items.map((item) => (
+                    <li
+                      key={item.concepto}
+                      className="flex items-center justify-between gap-4 px-5 py-3 text-sm"
+                    >
+                      <span className="text-gray-600 dark:text-gray-300">{item.concepto}</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">
+                        {item.cantidad}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
