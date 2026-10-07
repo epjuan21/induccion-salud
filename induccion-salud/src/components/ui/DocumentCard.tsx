@@ -30,7 +30,7 @@ export function DocumentCard({ document, className }: DocumentCardProps) {
       )}
     >
       {/* Portada / Placeholder */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-50 dark:bg-gray-900">
+      <div className="relative aspect-[2/3] w-full overflow-hidden bg-gray-50 dark:bg-gray-900">
         {cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

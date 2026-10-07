@@ -1,4 +1,4 @@
-import { BookOpen, FileText, Route, ShieldPlus, ClipboardList } from 'lucide-react';
+import { BookOpen, FileText, Route, ShieldPlus, ClipboardList, ClipboardCheck } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
 import { ArticleContainer, SectionBackground } from '@/components/layout';
 import { ModuleCard } from '@/components/ui/ModuleCard';
@@ -19,6 +19,14 @@ const secciones = [
     icon: Route,
     iconColor: 'text-sky-600 dark:text-sky-400',
     iconBgColor: 'bg-sky-100 dark:bg-sky-900/30',
+  },
+  {
+    title: 'Protocolos Saviasalud',
+    description: 'Protocolos clínicos definidos por Savia Salud EPS.',
+    href: '/documentacion/protocolos-saviasalud',
+    icon: ClipboardCheck,
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    iconBgColor: 'bg-teal-100 dark:bg-teal-900/30',
   },
   {
     title: 'Guías Sura',

@@ -7,10 +7,12 @@ const documentos: DocumentItem[] = [
   {
     title: 'Ruta Muy Alto Riesgo Obstétrico',
     href: 'https://drive.google.com/file/d/1_n37g_1E0g4YtF3kkqF31fPuikB_TWau/view?usp=drive_link',
+    cover: '/images/documentacion/rutas-saviasalud/RutaMuyAltoRiesgoObstetrico.png',
   },
   {
     title: 'Ruta VIH',
     href: 'https://drive.google.com/file/d/1vzAKluhttwZtw3KHKXcV0ml0G-RnmDHM/view?usp=drive_link',
+    cover: '/images/documentacion/rutas-saviasalud/RutaVIH.png',
   },
 ];
 
@@ -29,8 +31,8 @@ export default function RutasSaviasaludPage() {
         href: '/documentacion/guias-saviasalud',
       }}
       nextPage={{
-        title: 'Guías Sura',
-        href: '/documentacion/guias-sura',
+        title: 'Protocolos Saviasalud',
+        href: '/documentacion/protocolos-saviasalud',
       }}
     >
       <SectionBackground variant="default">

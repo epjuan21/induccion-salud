@@ -304,6 +304,10 @@ export const navigation: NavItem[] = [
         href: '/documentacion/rutas-saviasalud',
       },
       {
+        title: 'Protocolos Saviasalud',
+        href: '/documentacion/protocolos-saviasalud',
+      },
+      {
         title: 'Guías Sura',
         href: '/documentacion/guias-sura',
       },

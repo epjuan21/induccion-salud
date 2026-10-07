@@ -7,14 +7,17 @@ const documentos: DocumentItem[] = [
   {
     title: 'Atención del cuidado preconcepcional — Identificación del riesgo',
     href: 'https://drive.google.com/file/d/14AyZzrsbhPnDI5ABThz9qUts8bkZa9_3/view?usp=drive_link',
+    cover: '/images/documentacion/guias-saviasalud/AtencionDelCuidadoPreconcepcionalIdentificacionDelRiesgo.png',
   },
   {
     title: 'Guía para el manejo de la hipertensión arterial',
     href: 'https://drive.google.com/file/d/1S3aTBo3h3_CgiDDSSleZHyPiD--IvcCa/view?usp=drive_link',
+    cover: '/images/documentacion/guias-saviasalud/GuiaParaElManejoDeLaHipertensiónArterial.png',
   },
   {
     title: 'Guía sobre el manejo de EPOC',
     href: 'https://drive.google.com/file/d/1TjNzO3lkpvrchTyRn52xB9FmIYCshD2t/view?usp=drive_link',
+    cover: '/images/documentacion/guias-saviasalud/GuiaSobreElManejoDeEPOC.png',
   },
 ];
 
