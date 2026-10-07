@@ -14,3 +14,4 @@ export { CopyButton } from './CopyButton';
 export { Badge } from './Badge';
 export { SectionDivider } from './SectionDivider';
 export { CompactCard } from './CompactCard';
+export { DocumentCard, DocumentGrid, type DocumentItem } from './DocumentCard';

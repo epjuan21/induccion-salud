@@ -7,6 +7,7 @@ import {
   GraduationCap,
   BarChart3,
   Building2,
+  BookOpen,
   Palette,
   type LucideIcon
 } from 'lucide-react';
@@ -286,6 +287,29 @@ export const navigation: NavItem[] = [
       {
         title: 'Xenco',
         href: '/capacitaciones/xenco',
+      },
+    ],
+  },
+  {
+    title: 'Documentación',
+    href: '/documentacion',
+    icon: BookOpen,
+    children: [
+      {
+        title: 'Guías Saviasalud',
+        href: '/documentacion/guias-saviasalud',
+      },
+      {
+        title: 'Rutas Saviasalud',
+        href: '/documentacion/rutas-saviasalud',
+      },
+      {
+        title: 'Guías Sura',
+        href: '/documentacion/guias-sura',
+      },
+      {
+        title: 'Protocolos Institucionales',
+        href: '/documentacion/protocolos-institucionales',
       },
     ],
   },

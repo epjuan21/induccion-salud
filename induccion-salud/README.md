@@ -23,6 +23,7 @@ Aplicación web educativa para facilitar el proceso de incorporación del person
 | Producción | `/produccion` |
 | Vigilancia Epidemiológica | `/vigilancia-epidemiologica` |
 | Capacitaciones | `/capacitaciones` |
+| Documentación | `/documentacion` |
 
 ## Instalación y desarrollo
 
@@ -55,6 +56,7 @@ npm run lint     # Verificar errores de ESLint
 src/
 ├── app/                    # Rutas y páginas (Next.js App Router)
 │   ├── capacitaciones/
+│   ├── documentacion/
 │   ├── facturacion-pyp/
 │   ├── historias-clinicas/
 │   ├── produccion/
