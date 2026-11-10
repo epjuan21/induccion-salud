@@ -1,9 +1,18 @@
-import { FileText, ExternalLink as ExternalLinkIcon, ImageIcon } from 'lucide-react';
+import { FileText, Presentation, ExternalLink as ExternalLinkIcon, ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+export type DocumentType = 'pdf' | 'pptx';
+
+const documentTypeConfig = {
+  pdf: { label: 'PDF', icon: FileText, badgeClass: 'bg-red-600/90' },
+  pptx: { label: 'PPTX', icon: Presentation, badgeClass: 'bg-orange-600/90' },
+} as const;
 
 export interface DocumentItem {
   title: string;
   href: string;
+  /** Tipo de archivo mostrado en la insignia. Por defecto: 'pdf'. */
+  type?: DocumentType;
   /** Ruta opcional de la imagen de portada. Mientras no exista se muestra un placeholder. */
   cover?: string;
 }
@@ -14,7 +23,8 @@ interface DocumentCardProps {
 }
 
 export function DocumentCard({ document, className }: DocumentCardProps) {
-  const { title, href, cover } = document;
+  const { title, href, cover, type = 'pdf' } = document;
+  const { label, icon: TypeIcon, badgeClass } = documentTypeConfig[type];
 
   return (
     <a
@@ -47,10 +57,15 @@ export function DocumentCard({ document, className }: DocumentCardProps) {
           </div>
         )}
 
-        {/* Insignia PDF */}
-        <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-red-600/90 px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm">
-          <FileText className="h-3.5 w-3.5" />
-          PDF
+        {/* Insignia del tipo de archivo */}
+        <span
+          className={cn(
+            'absolute left-3 top-3 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm',
+            badgeClass
+          )}
+        >
+          <TypeIcon className="h-3.5 w-3.5" />
+          {label}
         </span>
       </div>
 

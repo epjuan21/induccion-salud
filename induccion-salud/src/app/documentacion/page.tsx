@@ -1,4 +1,4 @@
-import { BookOpen, FileText, Route, ShieldPlus, ClipboardList, ClipboardCheck } from 'lucide-react';
+import { BookOpen, FileText, Route, ShieldPlus, ClipboardList, ClipboardCheck, Landmark } from 'lucide-react';
 import { SectionTemplate } from '@/components/templates';
 import { ArticleContainer, SectionBackground } from '@/components/layout';
 import { ModuleCard } from '@/components/ui/ModuleCard';
@@ -43,6 +43,14 @@ const secciones = [
     icon: ClipboardList,
     iconColor: 'text-amber-600 dark:text-amber-400',
     iconBgColor: 'bg-amber-100 dark:bg-amber-900/30',
+  },
+  {
+    title: 'SSSA',
+    description: 'Documentos de la Secretaría Seccional de Salud de Antioquia.',
+    href: '/documentacion/sssa',
+    icon: Landmark,
+    iconColor: 'text-fuchsia-600 dark:text-fuchsia-400',
+    iconBgColor: 'bg-fuchsia-100 dark:bg-fuchsia-900/30',
   },
 ];
 

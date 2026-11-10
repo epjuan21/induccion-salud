@@ -315,6 +315,10 @@ export const navigation: NavItem[] = [
         title: 'Protocolos Institucionales',
         href: '/documentacion/protocolos-institucionales',
       },
+      {
+        title: 'SSSA',
+        href: '/documentacion/sssa',
+      },
     ],
   },
   {

@@ -35,6 +35,10 @@ export default function ProtocolosInstitucionalesPage() {
         title: 'Guías Sura',
         href: '/documentacion/guias-sura',
       }}
+      nextPage={{
+        title: 'SSSA',
+        href: '/documentacion/sssa',
+      }}
     >
       <SectionBackground variant="default">
         <ArticleContainer maxWidth="wide">
